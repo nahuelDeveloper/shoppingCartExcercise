@@ -28,16 +28,18 @@ final class ProductCell: UITableViewCell {
     weak var delegate: ProductCellDelegate?
     
     func configure(with product: Product, type: ProductCellType) {
+        configureForBuy()
         
         nameLabel.text = "Name: \(product.name)"
         priceLabel.text = "Price: \(product.price)"
         stockLabel.text = "Stock: \(product.stock)"
+    }
+    
+    func configure(with shoppingCartItem: ShoppingCartItem) {
+        configureForDelete()
         
-        if type == .buy {
-            configureForBuy()
-        } else {
-            configureForDelete()
-        }
+        nameLabel.text = "Name: \(shoppingCartItem.name)"
+        stockLabel.text = "Count: \(shoppingCartItem.count)"
     }
     
     /// The products can be added to the shopping cart using a [Buy] button for each row
@@ -50,6 +52,7 @@ final class ProductCell: UITableViewCell {
     func configureForDelete() {
         actionButton.setTitle("DELETE", for: .normal)
         actionButton.backgroundColor = UIColor.red
+        priceLabel.isHidden = true
     }
     
     @IBAction func action(_ sender: Any) {

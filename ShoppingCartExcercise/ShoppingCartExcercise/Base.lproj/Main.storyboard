@@ -36,7 +36,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Products" id="fL7-Cb-yQW">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="cyb-HW-9CA">
-                            <view key="customView" contentMode="scaleToFill" id="QpG-UH-K0C">
+                            <view key="customView" contentMode="scaleToFill" id="QpG-UH-K0C" userLabel="Nav Items View">
                                 <rect key="frame" x="276" y="5" width="83" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -57,12 +57,22 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkf-25-6cf">
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="33"/>
+                                        <connections>
+                                            <action selector="presentShoppingCart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sml-RL-2aD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nkf-25-6cf" secondAttribute="trailing" id="I0X-Wh-Q3W"/>
                                     <constraint firstItem="unf-uO-3i1" firstAttribute="leading" secondItem="QpG-UH-K0C" secondAttribute="leading" id="KPI-zb-quB"/>
                                     <constraint firstItem="unf-uO-3i1" firstAttribute="top" secondItem="QpG-UH-K0C" secondAttribute="top" id="YPw-EH-aiR"/>
                                     <constraint firstAttribute="trailing" secondItem="unf-uO-3i1" secondAttribute="trailing" id="YdH-10-7r6"/>
+                                    <constraint firstAttribute="bottom" secondItem="nkf-25-6cf" secondAttribute="bottom" id="ZhG-Ku-CsT"/>
+                                    <constraint firstItem="nkf-25-6cf" firstAttribute="top" secondItem="QpG-UH-K0C" secondAttribute="top" id="cC5-4e-chP"/>
+                                    <constraint firstItem="nkf-25-6cf" firstAttribute="leading" secondItem="QpG-UH-K0C" secondAttribute="leading" id="qkc-10-5im"/>
                                     <constraint firstAttribute="bottom" secondItem="unf-uO-3i1" secondAttribute="bottom" id="r1E-6w-Leb"/>
                                 </constraints>
                             </view>
@@ -78,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="927" y="124"/>
         </scene>
-        <!--View Controller-->
+        <!--Shopping Cart View Controller-->
         <scene sceneID="VkK-px-C5g">
             <objects>
-                <viewController id="zBL-wY-1xM" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shoppingCartVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zBL-wY-1xM" customClass="ShoppingCartViewController" customModule="ShoppingCartExcercise" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zjA-hC-5H1"/>
                         <viewControllerLayoutGuide type="bottom" id="xgX-hN-NsZ"/>
@@ -89,12 +99,47 @@
                     <view key="view" contentMode="scaleToFill" id="oA7-li-YHa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csa-gc-DuQ">
+                                <rect key="frame" x="20" y="20" width="30" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissButton:" destination="zBL-wY-1xM" eventType="touchUpInside" id="3Y7-8h-Mjn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQN-2f-K1v">
+                                <rect key="frame" x="125.5" y="28" width="125" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Fb-TH-kQk">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xgX-hN-NsZ" firstAttribute="top" secondItem="7Fb-TH-kQk" secondAttribute="bottom" id="ABh-do-eXR"/>
+                            <constraint firstItem="csa-gc-DuQ" firstAttribute="top" secondItem="zjA-hC-5H1" secondAttribute="bottom" id="GFQ-SA-eDz"/>
+                            <constraint firstAttribute="trailing" secondItem="7Fb-TH-kQk" secondAttribute="trailing" id="QDo-oS-UyW"/>
+                            <constraint firstItem="tQN-2f-K1v" firstAttribute="top" secondItem="zjA-hC-5H1" secondAttribute="bottom" constant="8" id="WKk-wL-XNY"/>
+                            <constraint firstItem="7Fb-TH-kQk" firstAttribute="leading" secondItem="oA7-li-YHa" secondAttribute="leading" id="ZlE-Qh-gja"/>
+                            <constraint firstItem="csa-gc-DuQ" firstAttribute="leading" secondItem="oA7-li-YHa" secondAttribute="leading" constant="20" id="jCg-vq-YS1"/>
+                            <constraint firstItem="tQN-2f-K1v" firstAttribute="centerX" secondItem="oA7-li-YHa" secondAttribute="centerX" id="oRg-H7-2MI"/>
+                            <constraint firstItem="7Fb-TH-kQk" firstAttribute="top" secondItem="zjA-hC-5H1" secondAttribute="bottom" constant="44" id="xjo-Xb-rMI"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="7Fb-TH-kQk" id="nHc-E0-kGL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEf-Uk-qR5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1777" y="125"/>
+            <point key="canvasLocation" x="1776.8" y="124.58770614692655"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CBS-tc-yHv">

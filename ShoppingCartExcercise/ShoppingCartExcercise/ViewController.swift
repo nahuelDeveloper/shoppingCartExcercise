@@ -25,6 +25,12 @@ class ViewController: UIViewController {
         configureWithDummyData()
         registerForNotifications()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -76,6 +82,18 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions -
+    @IBAction func presentShoppingCart(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let shoppingCartVC = storyboard.instantiateViewController(withIdentifier: "shoppingCartVC") as! ShoppingCartViewController
+        
+        shoppingCartVC.shoppingCartItems = shoppingCart.getProductsForShoppingCart()
+        
+        _ = self.navigationController?.present(shoppingCartVC, animated: true, completion: nil)
+    }
+    
+    // MARK: - Deinitialization
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

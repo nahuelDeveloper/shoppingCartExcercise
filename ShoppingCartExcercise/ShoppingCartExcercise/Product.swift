@@ -9,7 +9,7 @@
 import Foundation
 
 /// Each prodcut must have a name, price, and stock amount
-final class Product {
+class Product {
     
     var id: Int
     var name: String

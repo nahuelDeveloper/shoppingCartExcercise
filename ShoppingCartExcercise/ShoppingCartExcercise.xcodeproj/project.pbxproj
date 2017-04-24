@@ -18,6 +18,7 @@
 		7F4B25F51EAE6D010065F2FC /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4B25F41EAE6D010065F2FC /* ShoppingCart.swift */; };
 		7F4B25F81EAE6EA30065F2FC /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B25F71EAE6EA30065F2FC /* ProductCell.xib */; };
 		7F4B25FA1EAE6EB90065F2FC /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4B25F91EAE6EB90065F2FC /* ProductCell.swift */; };
+		7F4B25FC1EAE86450065F2FC /* ShoppingCartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4B25FB1EAE86450065F2FC /* ShoppingCartItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		7F4B25F41EAE6D010065F2FC /* ShoppingCart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		7F4B25F71EAE6EA30065F2FC /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		7F4B25F91EAE6EB90065F2FC /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		7F4B25FB1EAE86450065F2FC /* ShoppingCartItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				7F4B25F21EAE6C020065F2FC /* Product.swift */,
 				7F4B25F41EAE6D010065F2FC /* ShoppingCart.swift */,
+				7F4B25FB1EAE86450065F2FC /* ShoppingCartItem.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			files = (
 				7F4B25DB1EAE69CF0065F2FC /* ViewController.swift in Sources */,
 				7F4B25F51EAE6D010065F2FC /* ShoppingCart.swift in Sources */,
+				7F4B25FC1EAE86450065F2FC /* ShoppingCartItem.swift in Sources */,
 				7F4B25F11EAE6BE30065F2FC /* ProductsDataManager.swift in Sources */,
 				7F4B25F31EAE6C020065F2FC /* Product.swift in Sources */,
 				7F4B25D91EAE69CF0065F2FC /* AppDelegate.swift in Sources */,

@@ -16,6 +16,10 @@ enum CartNotifications: String {
 final class ShoppingCart {
     
     var products: [Product] = [Product]()
+    
+    var items: Set<ShoppingCartItem> = Set<ShoppingCartItem>()
+    var shoppingCartProducts: Set<Int> = Set<Int>()
+    
     var productsCount: Int = 0 {
         didSet {
             let dict:[String: String] = ["count": "\(productsCount)"]
@@ -44,12 +48,63 @@ final class ShoppingCart {
         return nil
     }
     
+    func getProductsForShoppingCart() -> [ShoppingCartItem] {
+        
+        var _items: [ShoppingCartItem] = [ShoppingCartItem]()
+        
+        for item in items {
+            _items.append(item)
+        }
+        
+        return _items
+    }
+    
     func addProductToCart(product: Product) {
+        
         let isNotEmpty = product.decreaseStockAndCheckIfNotEmpty()
         if isNotEmpty == false {
+            // Shouldn't appear on Product screen
             return
         }
+        
         productsCount += 1
         totalAmount += product.price
+        
+        shoppingCartProducts.insert(product.id)
+        
+        let result = items.insert(ShoppingCartItem(with: product))
+        
+        if result.0 == true {
+            print("New product inserted")
+        } else {
+            print("Product already inserted")
+            let shoppingCartItem = result.1 as ShoppingCartItem
+            shoppingCartItem.count += 1
+        }
+    }
+    
+    func removeShoppingItemFromCart(item: ShoppingCartItem) -> Bool {
+        
+        increaseStockForProduct(product: item)
+        
+        let isNotEmpty = item.decreaseCountAndCheckIfNotEmpty()
+        if isNotEmpty == false {
+            // Shouldn't appear on Shopping Cart screen
+            return true
+        }
+        
+        productsCount -= 1
+        totalAmount -= item.price
+        
+        return false
+    }
+    
+    func increaseStockForProduct(product: Product) {
+        
+        for _product in products {
+            if _product.id == product.id {
+                product.increaseStock()
+            }
+        }
     }
 }
