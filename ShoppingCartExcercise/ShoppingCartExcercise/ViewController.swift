@@ -14,8 +14,14 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var productCountLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
-    
-//    var shoppingCart: ShoppingCart!
+        
+    var filteredProducts: [Product] {
+        get {
+            return ShoppingCart.instance.products.filter {
+                $0.stock > 0
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,12 +107,12 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ShoppingCart.instance.products.count
+        return filteredProducts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ProductCell
-        cell.configure(with: ShoppingCart.instance.products[indexPath.row], type: .buy)
+        cell.configure(with: filteredProducts[indexPath.row], type: .buy)
         cell.delegate = self
         return cell
     }
@@ -125,7 +131,7 @@ extension ViewController: ProductCellDelegate {
     func actionButtonPressed(cell: ProductCell) {
         
         let indexPath = tableView.indexPath(for: cell)!
-        let product = ShoppingCart.instance.products[indexPath.row]
+        let product = filteredProducts[indexPath.row]
         
         ShoppingCart.instance.addProductToCart(product: product)
         

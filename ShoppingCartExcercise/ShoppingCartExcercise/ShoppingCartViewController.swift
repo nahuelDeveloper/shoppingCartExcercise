@@ -9,9 +9,6 @@
 import UIKit
 
 class ShoppingCartViewController: UIViewController {
-
-//    var shoppingCart: ShoppingCart!
-//    var shoppingCartItems: [ShoppingCartItem] = [ShoppingCartItem]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -72,10 +69,9 @@ extension ShoppingCartViewController: ProductCellDelegate {
         
         let shouldNotRemoveFromCart = ShoppingCart.instance.removeShoppingItemFromCart(item: item)
         if shouldNotRemoveFromCart == false {
-//            shoppingCart.shoppingCartItems.remove(at: indexPath.row)
             
             let r = ShoppingCart.instance.items.remove(item)
-            if let res = r {
+            if let _ = r {
                 print("Removed")
             } else {
                 print("Not Removed")
