@@ -46,9 +46,8 @@ class ViewController: UIViewController {
     }
 
     private func configureWithDummyData() {
-        let product = Product(id: 0, name: "Product 1", price: 50.0, stock: 5)
-//        shoppingCart = ShoppingCart(products: [product])
-        ShoppingCart.instance.products.append(product)
+
+        ShoppingCart.instance.products.append(contentsOf: ProductsDataManager.getDummyProducts())
     }
     
     private func registerForNotifications() {
@@ -88,9 +87,6 @@ class ViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let shoppingCartVC = storyboard.instantiateViewController(withIdentifier: "shoppingCartVC") as! ShoppingCartViewController
-        
-//        shoppingCartVC.shoppingCart = shoppingCart
-//        shoppingCartVC.shoppingCartItems = shoppingCart.getProductsForShoppingCart()
         
         _ = self.navigationController?.present(shoppingCartVC, animated: true, completion: nil)
     }
