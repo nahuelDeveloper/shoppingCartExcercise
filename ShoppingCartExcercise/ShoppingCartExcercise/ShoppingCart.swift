@@ -10,5 +10,11 @@ import Foundation
 
 final class ShoppingCart {
     
+    static let instance = ShoppingCart()
+    
+    private init() {
+    
+    }
+    
     var products: [Product] = [Product]()
 }

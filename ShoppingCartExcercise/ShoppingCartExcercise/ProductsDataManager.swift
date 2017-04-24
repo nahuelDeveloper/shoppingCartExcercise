@@ -11,5 +11,7 @@ import Foundation
 /// Dummy data provider
 final class ProductsDataManager {
     
-    
+    static func getDummyProducts() -> [Product] {
+        return [Product]()
+    }
 }
