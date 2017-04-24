@@ -39,7 +39,7 @@ final class ShoppingCart {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: CartNotifications.totalAmountChanged.rawValue), object: dict)
         }
     }
-        
+    
     func getProductById(id : Int) -> Product? {
         
         for product in products {
@@ -73,8 +73,6 @@ final class ShoppingCart {
         productsCount += 1
         totalAmount += product.price
         
-//        shoppingCartProducts.insert(product.id)
-        
         let result = items.insert(ShoppingCartItem(with: product))
         
         if result.0 == true {
@@ -89,15 +87,14 @@ final class ShoppingCart {
     func removeShoppingItemFromCart(item: ShoppingCartItem) -> Bool {
         
         increaseStockForProduct(product: item)
+        productsCount -= 1
+        totalAmount -= item.price
         
         let isNotEmpty = item.decreaseCountAndCheckIfNotEmpty()
         if isNotEmpty == false {
             // Shouldn't appear on Shopping Cart screen
             return false
         }
-        
-        productsCount -= 1
-        totalAmount -= item.price
         
         return true
     }
