@@ -15,10 +15,17 @@ enum CartNotifications: String {
 
 final class ShoppingCart {
     
+    static let instance = ShoppingCart()
+    
     var products: [Product] = [Product]()
     
     var items: Set<ShoppingCartItem> = Set<ShoppingCartItem>()
-    var shoppingCartProducts: Set<Int> = Set<Int>()
+    
+    var shoppingCartItems: [ShoppingCartItem] {
+        get {
+            return Array(items)
+        }
+    }
     
     var productsCount: Int = 0 {
         didSet {
@@ -32,11 +39,7 @@ final class ShoppingCart {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: CartNotifications.totalAmountChanged.rawValue), object: dict)
         }
     }
-    
-    init(products: [Product]) {
-        self.products = products
-    }
-    
+        
     func getProductById(id : Int) -> Product? {
         
         for product in products {
@@ -70,7 +73,7 @@ final class ShoppingCart {
         productsCount += 1
         totalAmount += product.price
         
-        shoppingCartProducts.insert(product.id)
+//        shoppingCartProducts.insert(product.id)
         
         let result = items.insert(ShoppingCartItem(with: product))
         
@@ -90,20 +93,20 @@ final class ShoppingCart {
         let isNotEmpty = item.decreaseCountAndCheckIfNotEmpty()
         if isNotEmpty == false {
             // Shouldn't appear on Shopping Cart screen
-            return true
+            return false
         }
         
         productsCount -= 1
         totalAmount -= item.price
         
-        return false
+        return true
     }
     
     func increaseStockForProduct(product: Product) {
         
-        for _product in products {
+        for _product in ShoppingCart.instance.products {
             if _product.id == product.id {
-                product.increaseStock()
+                _product.increaseStock()
             }
         }
     }

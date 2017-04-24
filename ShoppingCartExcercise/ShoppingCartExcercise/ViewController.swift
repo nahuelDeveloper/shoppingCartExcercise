@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var productCountLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
     
-    var shoppingCart: ShoppingCart!
+//    var shoppingCart: ShoppingCart!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,8 @@ class ViewController: UIViewController {
 
     private func configureWithDummyData() {
         let product = Product(id: 0, name: "Product 1", price: 50.0, stock: 5)
-        shoppingCart = ShoppingCart(products: [product])
+//        shoppingCart = ShoppingCart(products: [product])
+        ShoppingCart.instance.products.append(product)
     }
     
     private func registerForNotifications() {
@@ -88,7 +89,8 @@ class ViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let shoppingCartVC = storyboard.instantiateViewController(withIdentifier: "shoppingCartVC") as! ShoppingCartViewController
         
-        shoppingCartVC.shoppingCartItems = shoppingCart.getProductsForShoppingCart()
+//        shoppingCartVC.shoppingCart = shoppingCart
+//        shoppingCartVC.shoppingCartItems = shoppingCart.getProductsForShoppingCart()
         
         _ = self.navigationController?.present(shoppingCartVC, animated: true, completion: nil)
     }
@@ -103,12 +105,12 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shoppingCart.products.count
+        return ShoppingCart.instance.products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ProductCell
-        cell.configure(with: shoppingCart.products[indexPath.row], type: .buy)
+        cell.configure(with: ShoppingCart.instance.products[indexPath.row], type: .buy)
         cell.delegate = self
         return cell
     }
@@ -127,9 +129,9 @@ extension ViewController: ProductCellDelegate {
     func actionButtonPressed(cell: ProductCell) {
         
         let indexPath = tableView.indexPath(for: cell)!
-        let product = shoppingCart.products[indexPath.row]
+        let product = ShoppingCart.instance.products[indexPath.row]
         
-        shoppingCart.addProductToCart(product: product)
+        ShoppingCart.instance.addProductToCart(product: product)
         
         tableView.reloadData()
     }

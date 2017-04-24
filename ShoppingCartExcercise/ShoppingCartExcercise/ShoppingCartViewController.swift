@@ -10,8 +10,8 @@ import UIKit
 
 class ShoppingCartViewController: UIViewController {
 
-    
-    var shoppingCartItems: [ShoppingCartItem] = [ShoppingCartItem]()
+//    var shoppingCart: ShoppingCart!
+//    var shoppingCartItems: [ShoppingCartItem] = [ShoppingCartItem]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -45,12 +45,12 @@ class ShoppingCartViewController: UIViewController {
 extension ShoppingCartViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shoppingCartItems.count
+        return ShoppingCart.instance.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ProductCell
-        cell.configure(with: shoppingCartItems[indexPath.row])
+        cell.configure(with: ShoppingCart.instance.shoppingCartItems[indexPath.row])
         cell.delegate = self
         return cell
     }
@@ -68,11 +68,18 @@ extension ShoppingCartViewController: ProductCellDelegate {
     func actionButtonPressed(cell: ProductCell) {
         
         let indexPath = tableView.indexPath(for: cell)!
-        let item = shoppingCartItems[indexPath.row]
+        let item = ShoppingCart.instance.shoppingCartItems[indexPath.row]
         
-        let shouldNotRemoveFromCart = item.decreaseCountAndCheckIfNotEmpty()
+        let shouldNotRemoveFromCart = ShoppingCart.instance.removeShoppingItemFromCart(item: item)
         if shouldNotRemoveFromCart == false {
-            shoppingCartItems.remove(at: indexPath.row)
+//            shoppingCart.shoppingCartItems.remove(at: indexPath.row)
+            
+            let r = ShoppingCart.instance.items.remove(item)
+            if let res = r {
+                print("Removed")
+            } else {
+                print("Not Removed")
+            }
         }
         
         tableView.reloadData()
