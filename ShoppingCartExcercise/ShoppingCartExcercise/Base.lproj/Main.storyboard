@@ -34,9 +34,44 @@
                             <constraint firstItem="t9Z-cK-f9a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aBO-9p-rKP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Products" id="fL7-Cb-yQW"/>
+                    <navigationItem key="navigationItem" title="Products" id="fL7-Cb-yQW">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="cyb-HW-9CA">
+                            <view key="customView" contentMode="scaleToFill" id="QpG-UH-K0C">
+                                <rect key="frame" x="276" y="5" width="83" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="unf-uO-3i1">
+                                        <rect key="frame" x="0.0" y="0.0" width="83" height="33"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prM-pH-OYZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="33"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOU-wk-VW1">
+                                                <rect key="frame" x="41.5" y="0.0" width="41.5" height="33"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="unf-uO-3i1" firstAttribute="leading" secondItem="QpG-UH-K0C" secondAttribute="leading" id="KPI-zb-quB"/>
+                                    <constraint firstItem="unf-uO-3i1" firstAttribute="top" secondItem="QpG-UH-K0C" secondAttribute="top" id="YPw-EH-aiR"/>
+                                    <constraint firstAttribute="trailing" secondItem="unf-uO-3i1" secondAttribute="trailing" id="YdH-10-7r6"/>
+                                    <constraint firstAttribute="bottom" secondItem="unf-uO-3i1" secondAttribute="bottom" id="r1E-6w-Leb"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="productCountLabel" destination="prM-pH-OYZ" id="LAO-Zq-rY0"/>
                         <outlet property="tableView" destination="t9Z-cK-f9a" id="gze-R1-cpL"/>
+                        <outlet property="totalAmountLabel" destination="LOU-wk-VW1" id="CdX-Q0-Q3l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

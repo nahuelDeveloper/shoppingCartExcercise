@@ -11,11 +11,13 @@ import Foundation
 /// Each prodcut must have a name, price, and stock amount
 final class Product {
     
+    var id: Int
     var name: String
     var price: Double
     var stock: Int
     
-    init(name: String, price: Double, stock: Int) {
+    init(id: Int, name: String, price: Double, stock: Int) {
+        self.id = id
         self.name = name
         self.price = price
         self.stock = stock
@@ -25,9 +27,12 @@ final class Product {
         stock += 1
     }
     
-    func decreaseStock() {
+    func decreaseStockAndCheckIfNotEmpty() -> Bool {
         if stock > 0 {
             stock -= 1
+            return true
         }
+        
+        return false
     }
 }
